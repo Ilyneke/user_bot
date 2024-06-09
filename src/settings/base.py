@@ -1,6 +1,4 @@
-from environs import Env
-
-env = Env()
-
-API_ID = env.str('API_ID')
-API_HASH = env.str('API_HASH')
+# данные для авторизации, сами переменные не удалять во избежание проблем с импортом
+# После успешной авторизации значения при желании можно указать случайные
+API_ID = 12345678
+API_HASH = "your_hash"

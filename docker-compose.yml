@@ -1,0 +1,38 @@
+version: '2.2'
+
+services:
+  user_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "alembic upgrade head && python app.py"
+    container_name: user_bot
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      - POETRY_GROUP=dev
+    volumes:
+      - ./src:/code
+    env_file:
+      - .env
+
+  postgres:
+    build:
+      context: ./postgresql
+    restart: unless-stopped
+    container_name: postgres
+    cpu_count: 1
+    cpu_percent: 50
+    mem_limit: 512m
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-d", "coin_db", "-U", "postgres", "-h", "localhost" ]
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres-data:

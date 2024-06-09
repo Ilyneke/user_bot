@@ -12,7 +12,7 @@ class Users(Base):
 
     __tablename__ = 'users'
 
-    id = Column(BigInteger, nullable=False, doc='Id пользователя')
+    id = Column(BigInteger, primary_key=True, nullable=False, doc='Id пользователя')
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     status = Column(String, nullable=False, default='alive', doc='Статус')
     status_updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)

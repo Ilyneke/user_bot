@@ -7,8 +7,8 @@ env = Env()
 
 POSTGRES_SERVER = env.str('POSTGRES_HOST', default='postgres')
 POSTGRES_PORT = env.str('POSTGRES_PORT', default='5432')
-POSTGRES_USER = env.str('POSTGRES_USER')
-POSTGRES_PASSWORD = env.str('POSTGRES_PASSWORD')
+POSTGRES_USER = env.str('POSTGRES_USER', default='postgres')
+POSTGRES_PASSWORD = env.str('POSTGRES_PASSWORD', default='root')
 POSTGRES_DB = env.str('POSTGRES_DB', default='user_bot')
 
 SQLALCHEMY_ORM_URL = (
